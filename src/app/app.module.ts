@@ -5,14 +5,19 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 
+import { MaterialModule } from '@angular/material';
+import { FarmgateComponent } from './farmgate/farmgate.component';
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    FarmgateComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    MaterialModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
