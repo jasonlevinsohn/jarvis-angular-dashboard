@@ -1,7 +1,7 @@
-<md-card-title>Front Gate</md-card-title>
+<md-card-title>Farm Gate</md-card-title>
 <md-card-content>
-    <div>
-        Gate Status: {{ gateStatus }}
+    <div class="status-text">
+        Gate Status: {{ (gateObserver | async)?.status }}
     </div>
     <md-card-actions align="end">
         <button md-button color="primary" (click)="toggleGate()">Toggle Gate</button>

@@ -7,6 +7,15 @@ import { AppComponent } from './app.component';
 
 import { MaterialModule } from '@angular/material';
 import { FarmgateComponent } from './farmgate/farmgate.component';
+import { AngularFireModule } from 'angularfire2';
+
+export const firebaseConfig = {
+    apiKey: 'AIzaSyDVgfyNh_wPGVAMTZ3h0Np0QvR8kbqzQ0Y',
+    authDomain: 'l3-controller.firebaseapp.com',
+    databaseURL: 'https://l3-controller.firebaseio.com',
+    storageBucket: 'l3-controller.appspot.com',
+    messagingSenderId: '171670137242'
+};
 
 @NgModule({
   declarations: [
@@ -17,7 +26,8 @@ import { FarmgateComponent } from './farmgate/farmgate.component';
     BrowserModule,
     FormsModule,
     HttpModule,
-    MaterialModule.forRoot()
+    MaterialModule.forRoot(),
+    AngularFireModule.initializeApp(firebaseConfig)
   ],
   providers: [],
   bootstrap: [AppComponent]

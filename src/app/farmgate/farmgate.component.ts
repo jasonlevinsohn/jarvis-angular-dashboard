@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFire, FirebaseObjectObservable } from 'angularfire2';
 
 @Component({
     selector: 'app-farmgate',
@@ -8,24 +9,40 @@ import { Component, OnInit } from '@angular/core';
 export class FarmgateComponent implements OnInit {
     gateStatus: string;
     gateOpen: boolean;
+    gateObserver: FirebaseObjectObservable<any>;
 
-    constructor() {
+    constructor(af: AngularFire) {
         this.gateStatus = 'Closed';
         this.gateOpen = false;
+        this.gateObserver = af.database.object('/devices/farmgate');
+
+        this.gateObserver.subscribe(farmgate => {
+            console.log('Farmgate: ', farmgate);
+            this.setOpenBool(farmgate.status);
+        });
     }
 
     ngOnInit() {
+    }
+
+    private setOpenBool(status) {
+        if (status === 'open') {
+            this.gateOpen = true;
+            console.log('Gate Open');
+        } else {
+            this.gateOpen = false;
+            console.log('Gate Closed');
+        }
     }
 
     public toggleGate() {
         this.gateOpen = !this.gateOpen;
 
         if (this.gateOpen) {
-            this.gateStatus = 'Open';
+            this.gateObserver.update({status: 'closed'});
         } else {
-            this.gateStatus = 'Closed';
+            this.gateObserver.update({status: 'open'});
         }
-
     }
 
 }
