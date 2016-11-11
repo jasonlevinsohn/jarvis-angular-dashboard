@@ -1,0 +1,84 @@
+$weather-bar-primary1: #191919;
+
+.left-side {
+    padding-left: 5px;
+    flex: 3 1 auto;
+    display: flex;
+    md-toolbar-row {
+        height: inherit;
+    }
+}
+
+
+.current-condition-container {
+    position: relative;
+
+    .condition {
+        display: flex;
+        min-height: 55px;
+    }
+
+    .header-text {
+        text-align: center;
+        font-size: 0.8rem;
+    }
+    .condition-text {
+        text-align: center;
+        font-size: 0.7rem;
+    }
+
+    .temp {
+        font-size: 35px;
+        min-width: 40px;
+    }
+    .current-condition {
+        color: $weather-bar-primary1;
+        font-size: 7px;
+        min-width: 70px;
+        transform: translateX(-10px) translateY(3px);
+    }
+}
+
+.storm-indicator-container {
+    padding-left: 10px;
+
+    .storm-indicator {
+        transform: translateX(10px) translateY(5px);
+    }
+    .storm-indicator-text {
+        text-align: center;
+        font-size: 0.8rem;
+    }
+
+    .compass {
+        width: 65px;
+        height: 65px;
+    
+    }
+    .direction {
+        p {
+            font-size: 15px;
+            top: 58%;
+            text-transform: uppercase;
+        }
+        span {
+            margin-top: -30px;
+            font-size: 10px;
+            text-transform: none;
+
+        }
+    
+    }
+}
+
+.right-side {
+    border: 1px solid grey;
+    flex: 1 1;
+
+    // For now we want to see this front and center
+    z-index: 4;
+    background-color: black;
+    opacity: 0.7;
+
+}
+

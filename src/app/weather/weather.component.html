@@ -1,0 +1,64 @@
+<section class="left-side">
+    <div class="current-condition-container">
+        <div class="header-text">Current Condition</div>
+        <div class="condition">
+            <div class="temp">{{ forecastData.temperature }}&deg;</div>
+            <div class="l3-icon current-condition" [ngSwitch]="forecastData.icon">
+                <div class="icon partly-cloudy" *ngSwitchCase="'partly-cloudy-day'">
+                    <div class="cloud"></div>
+                    <div class="sun">
+                        <div class="rays"></div>
+                    </div>
+                </div>
+                <div class="icon partly-cloudy-night" *ngSwitchCase="'partly-cloudy-night'">
+                    <div class="cloud"></div>
+                    <div class="cloud"></div>
+                </div>
+                <div class="icon cloudy" *ngSwitchCase="'cloudy'">
+                    <div class="cloud"></div>
+                    <div class="cloud"></div>
+                </div>
+                <div class="icon clear-day" *ngSwitchCase="'clear-day'">
+                    <div class="sun">
+                        <div class="rays"></div>
+                    </div>
+                </div>
+                <!-- <div class="icon sun-shower"> -->
+                <!--     <div class="cloud"></div> -->
+                <!--     <div class="sun"> -->
+                <!--         <div class="rays"></div> -->
+                <!--     </div> -->
+                <!--     <div class="rain"></div> --> 
+                <!-- </div> -->
+            </div>
+        </div>
+        <div class="condition-text">{{ forecastData.summary }}</div>
+    </div>
+    <div class="storm-indicator-container">
+        <div class="storm-indicator-text">Nearest Storm</div>
+        <div class="storm-indicator">
+            <div class="compass">
+                <div class="direction">
+                    <p>{{ forecastData.stormBearing }}
+                    <span>{{ forecastData.stormDistance }} miles</span></p>
+                </div>
+                <div class="arrow {{ forecastData.stormBearing }}"></div>
+            </div> 
+        </div>
+    </div>
+    <!-- <div class="temp">Storm Distance: {{ forecastData.stormDistance }} miles</div> -->
+    <!-- <div class="temp">Storm Bearing: {{ forecastData.stormBearing }}</div> -->
+    <!-- <div class="temp">Precip Prob: {{ forecastData.precipProb }}</div> -->
+    <!-- <div class="temp">Precip Type: {{ forecastData.precipType }}</div> -->
+    <!-- <div class="temp">Summary: {{ forecastData.summary }}</div> -->
+    <!-- <div class="temp">Icon: {{ forecastData.icon }}</div> -->
+    <!-- <div class="temp">Wind Speed: {{ forecastData.windSpeed }}</div> -->
+    <!-- <div class="temp">Wind Bearing: {{ forecastData.windBearing }}</div> -->
+</section>
+
+<section class="right-side">
+    <div class="icon-readout">
+        Icon: {{forecastData.icon}}
+    </div>
+</section>
+
