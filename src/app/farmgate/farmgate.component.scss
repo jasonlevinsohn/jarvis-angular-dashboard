@@ -1,3 +1,46 @@
 .status-text {
     text-transform: capitalize;
+    font-size: 1.2em;
+
+    .status {
+        font-weight: bold;
+    }
+}
+
+md-card {
+    width: 400px;
+    box-sizing: border-box;
+    margin: 16px;
+}
+
+.farmgate-widget {
+    &.open {
+        background-color: rgba(0, 255, 110, 1);
+    }
+
+    &.closed {
+        background-color: rgba(255, 70, 50, 1);
+    }
+
+    &.opening {
+        animation: opening 2s infinite;
+    }
+
+    &.closing {
+        animation: closing 2s infinite;
+    }
+
+    @keyframes opening {
+        0% {background-color: rgba(255, 255, 255, 1);}
+        40% {background-color: rgba(0, 255, 110, 1);}
+        60% {background-color: rgba(0, 255, 110, 1);}
+        100% {background-color: rgba(255, 255, 255, 1);}
+    }
+
+    @keyframes closing {
+        0% {background-color: rgba(255, 255, 255, 1);}
+        40% {background-color: rgba(255, 70, 50, 1);}
+        60% {background-color: rgba(255, 70, 50, 1);}
+        100% {background-color: rgba(255, 255, 255, 1);}
+    }
 }

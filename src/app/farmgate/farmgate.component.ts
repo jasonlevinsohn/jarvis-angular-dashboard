@@ -12,36 +12,36 @@ export class FarmgateComponent implements OnInit {
     gateObserver: FirebaseObjectObservable<any>;
 
     constructor(af: AngularFire) {
-        this.gateStatus = 'Closed';
         this.gateOpen = false;
         this.gateObserver = af.database.object('/devices/farmgate');
 
         this.gateObserver.subscribe(farmgate => {
             console.log('Farmgate: ', farmgate);
-            this.setOpenBool(farmgate.status);
+            this.gateStatus = farmgate.status;
         });
     }
 
     ngOnInit() {
     }
 
-    private setOpenBool(status) {
-        if (status === 'open') {
-            this.gateOpen = true;
-            console.log('Gate Open');
-        } else {
-            this.gateOpen = false;
-            console.log('Gate Closed');
-        }
-    }
+    // private setOpenBool(status) {
+    //     if (status === 'open') {
+    //         this.gateOpen = true;
+    //         console.log('Gate Open');
+    //     } else {
+    //         this.gateOpen = false;
+    //         console.log('Gate Closed');
+    //     }
+    // }
 
     public toggleGate() {
-        this.gateOpen = !this.gateOpen;
 
-        if (this.gateOpen) {
-            this.gateObserver.update({status: 'closed'});
+        if (this.gateStatus === 'open') {
+            this.gateObserver.update({status: 'closing'});
+        } else if (this.gateStatus === 'closed') {
+            this.gateObserver.update({status: 'opening'});
         } else {
-            this.gateObserver.update({status: 'open'});
+            console.log('Unactionable Gate Status: ', this.gateStatus);
         }
     }
 

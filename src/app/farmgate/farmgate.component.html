@@ -1,12 +1,17 @@
-<md-card-title>Farm Gate</md-card-title>
-<md-card-content>
-    <div class="status-text">
-        Gate Status: {{ (gateObserver | async)?.status }}
-    </div>
-    <md-card-actions align="end">
-        <button md-button color="primary" (click)="toggleGate()">Toggle Gate</button>
+<md-card class="farmgate-widget" [ngClass]="(gateObserver | async)?.status">
+    <md-card-title>Farm Gate</md-card-title>
+    <md-card-content>
+        <div class="status-text">
+            Gate Status: 
+            <span class="status">
+                {{ (gateObserver | async)?.status }}
+            </span>
+        </div>
+        <md-card-actions align="end">
+            <button md-button color="primary" (click)="toggleGate()">Toggle Gate</button>
+            
+            <!-- Put a *ngIf here so we can just show Open/Close Gate conditionaly -->
+        </md-card-actions>
         
-        <!-- Put a *ngIf here so we can just show Open/Close Gate conditionaly -->
-    </md-card-actions>
-    
-</md-card-content>
+    </md-card-content>
+</md-card>
