@@ -7,18 +7,23 @@ import { AppComponent } from './app.component';
 
 import { MaterialModule } from '@angular/material';
 import { FarmgateComponent } from './farmgate/farmgate.component';
-import { AngularFireModule } from 'angularfire2';
+import { AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2';
 
 import { WeatherService } from './shared/services/index';
 import { WeatherComponent } from './weather/weather.component';
 
 
-export const firebaseConfig = {
+const firebaseConfig = {
     apiKey: 'AIzaSyDVgfyNh_wPGVAMTZ3h0Np0QvR8kbqzQ0Y',
     authDomain: 'l3-controller.firebaseapp.com',
     databaseURL: 'https://l3-controller.firebaseio.com',
     storageBucket: 'l3-controller.appspot.com',
     messagingSenderId: '171670137242'
+};
+
+const myFirebaseAuthConfig = {
+    provider: AuthProviders.Google,
+    method: AuthMethods.Redirect
 };
 
 @NgModule({
@@ -32,7 +37,7 @@ export const firebaseConfig = {
     FormsModule,
     HttpModule,
     MaterialModule.forRoot(),
-    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireModule.initializeApp(firebaseConfig, myFirebaseAuthConfig),
   ],
   providers: [WeatherService],
   bootstrap: [AppComponent]

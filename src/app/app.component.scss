@@ -19,6 +19,34 @@ $weather-bar-primary1: #191919;
         flex-flow: row wrap;
     }
 
+    .fill-middle-space {
+        flex: 1 1 auto;
+    }
+
+    .user-section {
+        display: flex;
+        flex-direction: row-reverse;
+        width: 150px;
+        // margin-right: 10px;
+        button {
+            order: 1;
+            vertical-align: top;
+            margin-top: 10px;
+        }
+        img {
+            order: 2;
+            width: 50px;
+            border-radius: 50%;
+        }
+
+        .flex-box {
+            width: 20px;
+            height: 20px;
+            background: red;
+            margin: 5px;
+        }
+    }
+
     .weather-bar {
         background: $weather-bar-primary1;
         color: #fff;

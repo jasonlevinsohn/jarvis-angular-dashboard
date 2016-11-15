@@ -16,12 +16,26 @@
                 <md-icon>menu</md-icon>
             </button>
             <span class="title">Jarvis Dashboard</span>
+            <span class="fill-middle-space"></span>
+            <span class="user-section">
+                <button *ngIf="!authObject" md-button (click)="login()">
+                    Login
+                </button>
+                <div class="logged-in-section" *ngIf="authObject">
+                    <img
+                        src="{{ authObject.photo }}"
+                        alt="{{ authObject.name }}">
+                    <button md-button (click)="logout()">
+                        Logout
+                    </button>
+                </div>
+            </span>
         </md-toolbar>
         <md-toolbar class="weather-bar">
             <app-weather></app-weather>
         </md-toolbar>
         <div class="card-container">
-            <app-farmgate></app-farmgate>
+            <app-farmgate *ngIf="authObject"></app-farmgate>
             <md-card class="other-widget">
                 <md-card-title>Card Title</md-card-title>
                 <md-card-content>
