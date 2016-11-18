@@ -30,6 +30,11 @@ md-card {
         animation: closing 2s infinite;
     }
 
+    .controller-state {
+        position: absolute;
+        text-transform: uppercase;
+    }
+
     @keyframes opening {
         0% {background-color: rgba(255, 255, 255, 1);}
         40% {background-color: rgba(0, 255, 110, 1);}

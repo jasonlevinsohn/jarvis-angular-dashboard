@@ -7,32 +7,49 @@ import { AngularFire, FirebaseObjectObservable } from 'angularfire2';
     styleUrls: ['./farmgate.component.scss']
 })
 export class FarmgateComponent implements OnInit {
-    gateStatus: string;
+    showGateStatus: string;
+    fbControllerOnline: boolean = true;
+    showControllerOnline: boolean = true;
     gateOpen: boolean;
     gateObserver: FirebaseObjectObservable<any>;
+    controllerObserver: FirebaseObjectObservable<any>;
 
     constructor(af: AngularFire) {
         this.gateOpen = false;
+        this.showGateStatus = 'retrieving';
+        this.controllerObserver = af.database.object('/devices/controller');
         this.gateObserver = af.database.object('/devices/farmgate');
 
         this.gateObserver.subscribe(farmgate => {
             console.log('Farmgate: ', farmgate);
             this.gateStatus = farmgate.status;
         });
+
+        this.controllerObserver.subscribe(controller => {
+            console.log('Controller State Change: ', controller);
+            this.fbControllerOnline = controller.online;
+
+            this.checkControllerIsOnline();
+        });
     }
 
     ngOnInit() {
     }
 
-    // private setOpenBool(status) {
-    //     if (status === 'open') {
-    //         this.gateOpen = true;
-    //         console.log('Gate Open');
-    //     } else {
-    //         this.gateOpen = false;
-    //         console.log('Gate Closed');
-    //     }
-    // }
+    private checkControllerIsOnline() {
+
+        if (this.fbControllerOnline) {
+            this.showControllerOnline = true;
+            this.showGateStatus = 'retrieving';
+        } else {
+            this.showControllerOnline = false;
+            this.controllerObserver.update({checkingOnline: false});
+            this.showGateStatus = 'offline';
+        }
+        console.log('Is Controller online: ', this.showControllerOnline);
+
+
+    }
 
     public toggleGate() {
 

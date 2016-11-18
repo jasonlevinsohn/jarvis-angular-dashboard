@@ -1,5 +1,8 @@
 # JarvisDashboard2
 
+# TODO
+* Create a Controller State service to show the state between components
+* Add Authentication to update firebase nodes using firebase.auth.signInWithEmailAndPassword(email, password)
 This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.19-3.
 
 ## Development server
