@@ -9,12 +9,13 @@
             </span>
         </div>
         <md-card-actions align="end">
-            <button md-raised-button color="primary" (click)="toggleGate()">Toggle Gate</button>
+            <button md-raised-button color="primary" [disabled]="showGateStatus === 'offline'"(click)="toggleGate()">Toggle Gate</button>
             
             <!-- Put a *ngIf here so we can just show Open/Close Gate conditionaly -->
         </md-card-actions>
 
         <div class="controller-state" *ngIf="!showControllerOnline">Controller is offline</div>
+        <div class="gate-voltage">Gate Voltage: {{ showVoltage }}</div>
         
     </md-card-content>
 </md-card>
