@@ -1,17 +1,36 @@
-<md-card class="farmgate-widget" [ngClass]="(gateObserver | async)?.status">
+<md-card class="farmgate-widget" [ngClass]="showGateStatus">
     <md-card-title>Farm Gate</md-card-title>
     <md-card-content>
         <div class="status-text">
             Gate Status: 
             <span class="status">
-                {{ (gateObserver | async)?.status }}
+                <!-- {{ (gateObserver | async)?.status }} -->
+                {{ showGateStatus }}
             </span>
         </div>
         <md-card-actions align="end">
-            <button md-button color="primary" (click)="toggleGate()">Toggle Gate</button>
+            <button md-raised-button color="primary" [disabled]="showGateStatus === 'offline'"(click)="toggleGate()">Toggle Gate</button>
             
             <!-- Put a *ngIf here so we can just show Open/Close Gate conditionaly -->
         </md-card-actions>
+
+        <footer>
+            <div class="row1">
+                <div class="gate-voltage">Gate Voltage: {{ showVoltage }}</div>
+                <div class="fill-middle-space"></div>
+                <div class="pedestrian-mode-container">
+                    <span class="text">Pedestrian Mode: </span>
+                    <md-slide-toggle
+                        color="accent"
+                        [checked]="pedestrianMode == 'on'"
+                        (change)="togglePedestrianMode()">
+                    </md-slide-toggle>
+                </div>
+            
+            </div>
+            <div class="controller-state row2" *ngIf="!showControllerOnline">Controller is offline</div>
+        
+        </footer>
         
     </md-card-content>
 </md-card>

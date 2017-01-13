@@ -36,7 +36,12 @@ $weather-bar-primary1: #191919;
         font-size: 7px;
         min-width: 70px;
         transform: translateX(-10px) translateY(3px);
+
+        .rainy {
+            transform: translateY(20px);
+        }
     }
+
 }
 
 .storm-indicator-container {
