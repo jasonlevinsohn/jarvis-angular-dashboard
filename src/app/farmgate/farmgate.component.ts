@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFire, FirebaseObjectObservable } from 'angularfire2';
+import 'hammerjs'; // Used for the Pedestrian Mode Slider Toggle
 
 @Component({
     selector: 'app-farmgate',
@@ -18,6 +19,7 @@ export class FarmgateComponent implements OnInit {
     clearGateStatusCheck: any;
     currentGateVoltage: number = 0.0;
     showVoltage: number;
+    pedestrianMode: string;
 
     constructor(af: AngularFire) {
         this.gateOpen = false;
@@ -52,6 +54,13 @@ export class FarmgateComponent implements OnInit {
             // Update the current Gate Voltage
             if (this.currentGateVoltage !== farmgate.currentVoltage) {
                 this.showVoltage = farmgate.currentVoltage;
+            }
+
+            // Update the Pedestrian Mode from Firebase
+            if (farmgate.pedestrianMode) {
+                this.pedestrianMode = 'on';
+            } else {
+                this.pedestrianMode = 'off';
             }
         });
 
@@ -121,6 +130,18 @@ export class FarmgateComponent implements OnInit {
         } else {
             console.log('Unactionable Gate Status: ', this.gateStatus);
         }
+    }
+
+    public togglePedestrianMode () {
+        if (this.pedestrianMode === 'on') {
+            this.pedestrianMode = 'off';
+            this.gateObserver.update({pedestrianMode: false});
+        } else {
+            this.gateObserver.update({pedestrianMode: true});
+            this.pedestrianMode = 'on';
+
+        }
+        console.log('Ped Mode: ', this.pedestrianMode);
     }
 
 }

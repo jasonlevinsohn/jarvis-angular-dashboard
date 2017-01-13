@@ -14,8 +14,23 @@
             <!-- Put a *ngIf here so we can just show Open/Close Gate conditionaly -->
         </md-card-actions>
 
-        <div class="controller-state" *ngIf="!showControllerOnline">Controller is offline</div>
-        <div class="gate-voltage">Gate Voltage: {{ showVoltage }}</div>
+        <footer>
+            <div class="row1">
+                <div class="gate-voltage">Gate Voltage: {{ showVoltage }}</div>
+                <div class="fill-middle-space"></div>
+                <div class="pedestrian-mode-container">
+                    <span class="text">Pedestrian Mode: </span>
+                    <md-slide-toggle
+                        color="accent"
+                        [checked]="pedestrianMode == 'on'"
+                        (change)="togglePedestrianMode()">
+                    </md-slide-toggle>
+                </div>
+            
+            </div>
+            <div class="controller-state row2" *ngIf="!showControllerOnline">Controller is offline</div>
+        
+        </footer>
         
     </md-card-content>
 </md-card>
